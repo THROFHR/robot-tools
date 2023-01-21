@@ -13,12 +13,12 @@ $app      = $manifest['appid'];
 checkAppID($app);
 
 if ($_GET['makeapk'] == 'start') {
-    unlink("data/" . $app . '.apk_ready.json');
-    file_put_contents("data/" . $app . '.need_apk.json', $app);
+    unlink("/usr/data/" . $app . '.apk_ready.json');
+    file_put_contents("/usr/data/" . $app . '.need_apk.json', $app);
 
 }
 
-move_uploaded_file($_FILES["file"]["tmp_name"], "data/" . $app . '.wgt');
+move_uploaded_file($_FILES["file"]["tmp_name"], "/usr/data/" . $app . '.wgt');
 
 $version = [
     'appid'        => $app,
@@ -26,7 +26,7 @@ $version = [
     "version_code" => $manifest['versionCode'],
     "path"         => $app . '.wgt',
 ];
-file_put_contents("data/" . $app . '.json', json_encode($version));
+file_put_contents("/usr/data/" . $app . '.json', json_encode($version));
 
 //--------> make apk
 
